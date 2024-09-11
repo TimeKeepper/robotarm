@@ -6,7 +6,10 @@ class RobotArmNode:
     def move(self, angle):
         print("机械臂{}移动到角度{}".format(self.ID, angle))
 
+baseHeigit = 19.00
+
+
 def anti_movecalculation(position):
     x, y, z = position
 
-    
+
