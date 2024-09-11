@@ -5,6 +5,10 @@ l_3 = 18.0
 import math
 
 def inverse_kinematics(x, y, phi):
+    #prepare
+    x = x - l_3 * math.cos(phi)
+    y = y - l_3 * math.sin(phi)
+    
     c_2 = (x**2 + y**2 - l_1**2 - l_2**2) / (2 * l_1 * l_2)
     if abs(c_2) > 1:
         print("Invalid input")
@@ -18,17 +22,23 @@ def inverse_kinematics(x, y, phi):
     theta_1 = math.atan2(y, x) - math.atan2(k_2, k_1)
 
     theta_3 = phi - theta_1 - theta_2
+    
+    print("theta_1 =", theta_1 * 180 / math.pi) # in degrees
+    print("theta_2 =", theta_2 * 180 / math.pi) # in degrees
+    print("theta_3 =", theta_3 * 180 / math.pi) # in degrees
 
     return (theta_1, theta_2, theta_3)
-
-# Testing the function
-test = inverse_kinematics(10, 0, 0)
 
 import matplotlib.pyplot as plt
 
 def plot_arm(x, y, phi):
+    
+    result = inverse_kinematics(x, y, phi)
+    
+    if result is None:
+        return
 
-    theta_1, theta_2, theta_3 = inverse_kinematics(x, y, phi)
+    theta_1, theta_2, theta_3 = result
 
     if theta_1 is None:
         return
@@ -54,4 +64,4 @@ def plot_arm(x, y, phi):
     plt.show()
 
 
-plot_arm(15, 10, -math.pi/6)
+plot_arm(30, 0, -math.pi/6)
