@@ -89,5 +89,5 @@ def plot_arm(x, y, phi):
     plt.axis('equal')
     plt.show()
 
-plot_arm(20, 0, -math.pi/6)
+plot_arm(20, 0, -math.pi/3)
 
